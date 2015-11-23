@@ -167,7 +167,12 @@ Plug 'vim-scripts/BufOnly.vim'
 " Gundo for branched undo
 Plug 'simnalamburt/vim-mundo'
 
+"TODO
 Plug 'YankRing.vim'
+Plug 'Valloric/YouCompleteMe'
+" Go to an run:
+" ~/.config/nvim/plugged/YouCompleteMe/
+" ./install.py --clang-completer
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
@@ -278,6 +283,7 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set omnifunc=syntaxcomplete#Complete
 
 " ---------------------------------------------------------------------------------------------------------------------
 " 2.11 Neovim specific settings
@@ -302,7 +308,7 @@ set tags+=.tags                           " Project tags are in .tags file
 " -----------------------------------------------------
 " 3.1 Setting leader
 " -----------------------------------------------------
-let g:mapleader="\<space>"
+" let g:mapleader="\<space>"
 
 " -----------------------------------------------------
 " 3.2 Disabling arrow keys, space key, exmode enter
@@ -633,3 +639,5 @@ nnoremap <leader><right> :bnext<cr>
 nnoremap <leader><left>  :bprev<cr>
 nnoremap <leader>l :bnext<cr>
 nnoremap <leader>h  :bprev<cr>
+
+let g:ycm_min_num_of_chars_for_completion = 3
