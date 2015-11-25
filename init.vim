@@ -365,8 +365,11 @@ map q: :q
 " -----------------------------------------------------
 
 " NERDTree wrapper
-nnoremap <silent> <F1> :call utils#nerdWrapper()<CR>
-" TODO
+nmap <silent> <F2> :NERDTreeToggle<CR>
+nmap <silent> <F3> :GundoToggle<CR>
+nmap <silent> <F5> :set invlist<CR>:set list?<CR>
+nmap <silent> <F6> :set invwrap<CR>:set wrap?<CR>
+nmap <silent> <F7> :set invhls<CR>:set hls?<CR>
 
 " -----------------------------------------------------
 " 3.6 Window / Buffer management
@@ -469,7 +472,7 @@ let g:lightline = {
       \ }
 
 function! LightLineFilename()
-  return expand('%:p:h')
+  return expand('%:p')
 endfunction
 
 " -----------------------------------------------------
@@ -568,11 +571,6 @@ hi! link BufTabLineFill Comment
 autocmd FileType ruby,coffee,sass,scss,haml,slim,vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType html,htmldjango,xhtml,css,javascript,javascript.jsx,snippets setlocal shiftwidth=4 softtabstop=4 tabstop=4
 
-" Set underscore as a word separator
-autocmd FileType ruby,erb,elixir,vim setlocal iskeyword -=_
-" Set dash as a word separator
-autocmd FileType html,xhtml,css,sass,scss,less setlocal iskeyword -=-
-
 " Keywordprg settings
 autocmd FileType vim setlocal keywordprg=:help
 
@@ -641,3 +639,11 @@ nnoremap <leader>l :bnext<cr>
 nnoremap <leader>h  :bprev<cr>
 
 let g:ycm_min_num_of_chars_for_completion = 3
+
+" Command-line config{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Bash like
+cnoremap <C-A>    <Home>
+cnoremap <C-E>    <End>
+cnoremap <C-K>    <C-U>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
