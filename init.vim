@@ -356,9 +356,38 @@ tnoremap ,<ESC> <C-\><C-n>
 " No more accidentally showing up command window (Use C-f to show it)
 map q: :q
 
+" jk in insert mode is now esc
+inoremap jk <esc>
+
+" jk in command mode is now esc
+cnoremap jk <esc>
+
+" Remap leader key
+let mapleader = "\\"
+let g:mapleader = "\\"
+
+" Autoload init.vim when you save it
+autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
+
 " -----------------------------------------------------
 " 3.4 Common tasks
 " -----------------------------------------------------
+
+" Whenever i forget to use sudo vim... Now just write with 'w!!'
+cmap w!! w !sudo tee >/dev/null %
+
+" Fast editing of .vimrc
+map <leader>e :e! ~/.config/nvim/init.vim<cr>
+
+" Leader + q quits vim
+noremap <leader>q :qa <cr>
+
+" Leader CD goes to current directory
+nnoremap <leader>CD :cd %:p:h<cr>
+
+" Fast search with <space>
+map <space> /
+map <c-space> ?
 
 " -----------------------------------------------------
 " 3.5 F-key actions
@@ -375,13 +404,16 @@ nmap <silent> <F7> :set invhls<CR>:set hls?<CR>
 " 3.6 Window / Buffer management
 " -----------------------------------------------------
 
-" TODO
+" Navigate between buffers
+nnoremap <leader>l :bnext<cr>
+nnoremap <leader>h  :bprev<cr>
+
 " -----------------------------------------------------
 " 3.7 Command abbreviations and mappings
 " -----------------------------------------------------
 
-" Quiting and saving all
-" TODO
+" strip all trailing whitespace in the current file
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " -----------------------------------------------------
 " 3.7 Custom commands and functions
@@ -511,21 +543,24 @@ let g:test#strategy = "neoterm"
 " -----------------------------------------------------
 let g:vim_markdown_no_default_key_mappings=1
 let g:vim_markdown_folding_disabled=1
+
+" -----------------------------------------------------
+" 4.15 CtrlP settings
+" -----------------------------------------------------
+let g:ctrlp_map = '<leader>o'
+let g:ctrlp_extensions = ['tag']        " TODO - What does this option do
+let g:ctrlp_by_filename = 0             " Set to 0 to search by path and filename (full path) Change with Control-D
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|doc)$|build$|documentation$',
+  \ 'file': '\v\.(exe|so|dll|jpg|png|gif|zip|o|aux|class)$',
+  \ 'link': 'syntastic_lib'}
+let g:ctrlp_working_path_mode = '0'     " Disable because i like to search from current directory
 "}}}
 
 " ======================================================================================================================
 " 5.0 Plugin mappings
 " ======================================================================================================================
 "{{{
-
-" -----------------------------------------------------
-" 5.4 Gitgutter
-" -----------------------------------------------------
-nnoremap [c :GitGutterPrevHunk<CR>
-nnoremap ]c :GitGutterNextHunk<CR>
-nnoremap ,hs :GitGutterStageHunk<CR>
-nnoremap ,hr :GitGutterRevertHunk<CR>
-
 
 " ======================================================================================================================
 " 6.0 Color and highlighting settings
@@ -602,48 +637,6 @@ autocmd BufWritePost *.sh Neomake shellcheck
 " pip3 install vim-vint
 autocmd BufWritePost *.vim Neomake vint
 "}}}
-
-let mapleader = "\\"
-let g:mapleader = "\\"
-
-" strip all trailing whitespace in the current file
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-"Whenever i forget to use sudo vim... Now just write with 'w!!'
-cmap w!! w !sudo tee >/dev/null %
-
-
-"Fast editing of .vimrc
-map <leader>e :e! ~/.config/nvim/init.vim<cr>
-
-autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
-
-map <space> /
-map <c-space> ?
-
-" jk in insert mode is now esc
-inoremap jk <esc>
-" jk in command mode is now esc
-cnoremap jk <esc>
-noremap <leader>q :qa <cr>
-nnoremap <leader>CD :cd %:p:h<cr>
-
-
-let g:ctrlp_map = '<leader>o'
-let g:ctrlp_extensions = ['tag']        " TODO - What does this option do
-let g:ctrlp_by_filename = 0             " Set to 0 to search by path and filename (full path) Change with Control-D
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|doc)$|build$|documentation$',
-  \ 'file': '\v\.(exe|so|dll|jpg|png|gif|zip|o|aux|class)$',
-  \ 'link': 'syntastic_lib'}
-let g:ctrlp_working_path_mode = '0'     " Disable because i like to search from current directory
-
-nnoremap <leader><right> :bnext<cr>
-nnoremap <leader><left>  :bprev<cr>
-nnoremap <leader>l :bnext<cr>
-nnoremap <leader>h  :bprev<cr>
-
-let g:ycm_min_num_of_chars_for_completion = 3
 
 " Command-line config{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
