@@ -582,6 +582,11 @@ autocmd BufNewFile,BufRead *.md setlocal spell
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
 
+" Git commit messages with spelling and warning to not pass 72 chars
+autocmd FileType gitcommit,markdown setlocal spell
+autocmd FileType gitcommit,markdown setlocal spelllang=en_us
+autocmd FileType gitcommit,markdown set colorcolumn=72
+
 " -----------------------------------------------------
 " 7.1 Run linters after save
 " -----------------------------------------------------
