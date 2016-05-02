@@ -55,7 +55,7 @@ Plug 'p0deje/vim-ruby-interpolation', { 'for': ['ruby'] }
 " HTML5 syntax
 Plug 'othree/html5.vim'
 " SCSS syntax
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 " CSS color highlighter
 Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
 
@@ -63,20 +63,20 @@ Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Java
 " ---------------------------------------------------------------------------------------------------------------------
 
-Plug 'javacomplete'
-Plug 'JavaImp.vim--Lee'
-Plug 'jaxbot/vim-java-get-set'
+Plug 'javacomplete', { 'for': ['java'] }
+Plug 'JavaImp.vim--Lee', { 'for': ['java'] }
+Plug 'jaxbot/vim-java-get-set', { 'for': ['java'] }
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Other languages
 " ---------------------------------------------------------------------------------------------------------------------
 
 " Elixir syntax
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir', { 'for': ['elixir'] }
 " Python syntax
-Plug 'mitsuhiko/vim-python-combined'
+Plug 'mitsuhiko/vim-python-combined', { 'for': ['python'] }
 " Elm
-Plug 'lambdatoast/elm.vim'
+Plug 'lambdatoast/elm.vim', { 'for': ['elm'] }
 " Markdown syntax and helpers
 Plug 'plasticboy/vim-markdown'
 " Tmux syntax
@@ -603,7 +603,7 @@ hi! link BufTabLineFill Comment
 " 7.0 Filetype specific settings and autocommands
 " ======================================================================================================================
 "{{{
-autocmd FileType ruby,coffee,sass,scss,haml,slim,vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType ruby,coffee,sass,scss,haml,slim,json,vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType html,htmldjango,xhtml,css,javascript,javascript.jsx,snippets setlocal shiftwidth=4 softtabstop=4 tabstop=4
 
 " Keywordprg settings
