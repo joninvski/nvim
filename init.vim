@@ -169,7 +169,7 @@ Plug 'simnalamburt/vim-mundo'
 
 "TODO
 Plug 'YankRing.vim'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim'
 " Go to an run:
 " ~/.config/nvim/plugged/YouCompleteMe/
 " ./install.py --clang-completer
@@ -645,3 +645,7 @@ cnoremap <C-A>    <Home>
 cnoremap <C-E>    <End>
 cnoremap <C-K>    <C-U>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+#To clean
+
+let g:deoplete#enable_at_startup = 1
