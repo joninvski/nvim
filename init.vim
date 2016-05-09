@@ -158,6 +158,8 @@ Plug 'altercation/vim-colors-solarized'
 " Other
 " ---------------------------------------------------------------------------------------------------------------------
 
+" Easymotion to easily navigate inside a file
+Plug 'easymotion/vim-easymotion'
 " Matchit enhances motions
 Plug 'edsono/vim-matchit'
 " More . repeat functionality
@@ -562,6 +564,10 @@ let g:ctrlp_working_path_mode = '0'     " Disable because i like to search from 
 " ======================================================================================================================
 "{{{
 
+" 5.5 Easymotion
+" -----------------------------------------------------
+"Use çç + letter to quickly move to that letter
+map çç <Plug>(easymotion-bd-f)
 " ======================================================================================================================
 " 6.0 Color and highlighting settings
 " ======================================================================================================================
