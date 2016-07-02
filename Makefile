@@ -4,7 +4,7 @@
 all: basic spell
 
 basic:
-	ln   -fs   `pwd`         ${HOME}/.config/nvim/
+	ln   -fs   `pwd`         ${HOME}/.config/nvim
 	- curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 spell:
