@@ -79,8 +79,6 @@ Plug 'mitsuhiko/vim-python-combined', { 'for': ['python'] }
 Plug 'lambdatoast/elm.vim', { 'for': ['elm'] }
 " Markdown syntax and helpers
 Plug 'plasticboy/vim-markdown'
-" Tmux syntax
-Plug 'tejr/vim-tmux'
 " Git syntax
 Plug 'tpope/vim-git'
 " Dockerfile
@@ -575,7 +573,7 @@ map çç <Plug>(easymotion-bd-f)
 " Syntax highlighting
 syntax on
 
-colorscheme base16-default
+colorscheme base16-default-dark
 set background=dark
 " Other good ones
 " colorscheme molokai
@@ -652,6 +650,6 @@ cnoremap <C-E>    <End>
 cnoremap <C-K>    <C-U>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-#To clean
+" To clean
 
 let g:deoplete#enable_at_startup = 1
