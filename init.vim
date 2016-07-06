@@ -164,11 +164,15 @@ Plug 'edsono/vim-matchit'
 Plug 'tpope/vim-repeat'
 " Delete all but current buffer
 Plug 'vim-scripts/BufOnly.vim'
-" Gundo for branched undo
-Plug 'simnalamburt/vim-mundo'
+" Nicer undo tree
+Plug 'mbbill/undotree'
+
 
 "TODO
 Plug 'YankRing.vim'
+"fix for yankring and neovim
+let g:yankring_clipboard_monitor=0
+
 Plug 'Shougo/deoplete.nvim'
 " Go to an run:
 " ~/.config/nvim/plugged/YouCompleteMe/
@@ -242,7 +246,7 @@ set ignorecase                              " Ignore case by default
 set smartcase                               " Make search case sensitive only if it contains uppercase letters
 set incsearch                               " Incremental search
 set wrapscan                                " Search again from top when reached the bottom
-set nohlsearch                              " Don't highlight after search
+set hlsearch                                " Keep highlight after search
 
 " ---------------------------------------------------------------------------------------------------------------------
 " 2.6 Persistent undo settings
@@ -395,7 +399,7 @@ map <c-space> ?
 
 " NERDTree wrapper
 nmap <silent> <F2> :NERDTreeToggle<CR>
-nmap <silent> <F3> :GundoToggle<CR>
+nmap <silent> <F3> :UndotreeToggle<CR>
 nmap <silent> <F5> :set invlist<CR>:set list?<CR>
 nmap <silent> <F6> :set invwrap<CR>:set wrap?<CR>
 nmap <silent> <F7> :set invhls<CR>:set hls?<CR>
@@ -441,14 +445,6 @@ command! GenerateRubyCT :call utils#generateRubyCtags()
 " 4.1 Slime
 " -----------------------------------------------------
 let g:slime_target = "tmux"
-
-" -----------------------------------------------------
-" 4.2 Gundo
-" -----------------------------------------------------
-let g:gundo_debug = 1
-let g:gundo_preview_bottom = 1
-let g:gundo_tree_statusline = "Gundo"
-let g:gundo_preview_statusline = "Gundo Preview"
 
 " -----------------------------------------------------
 " 4.3 NERDTree
