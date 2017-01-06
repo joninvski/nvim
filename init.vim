@@ -167,7 +167,6 @@ Plug 'vim-scripts/BufOnly.vim'
 " Nicer undo tree
 Plug 'mbbill/undotree'
 
-
 "TODO
 Plug 'YankRing.vim'
 "fix for yankring and neovim
@@ -177,6 +176,12 @@ Plug 'Shougo/deoplete.nvim'
 " Go to an run:
 " ~/.config/nvim/plugged/YouCompleteMe/
 " ./install.py --clang-completer
+
+" Clojure fireplace repl
+Plug 'tpope/vim-fireplace'
+Plug 'venantius/vim-eastwood'
+Plug 'venantius/vim-cljfmt'
+Plug 'guns/vim-clojure-static'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
