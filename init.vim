@@ -47,6 +47,7 @@ Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
 Plug 'tpope/vim-bundler', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
 " String interpolation helper
 Plug 'p0deje/vim-ruby-interpolation', { 'for': ['ruby'] }
+Plug 'fatih/vim-go', { 'for': ['go'] }
 
 " ---------------------------------------------------------------------------------------------------------------------
 " HTML/CSS
@@ -63,8 +64,8 @@ Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Java
 " ---------------------------------------------------------------------------------------------------------------------
 
-Plug 'javacomplete', { 'for': ['java'] }
-Plug 'JavaImp.vim--Lee', { 'for': ['java'] }
+Plug 'vim-scripts/javacomplete', { 'for': ['java'] }
+Plug 'vim-scripts/JavaImp.vim--Lee', { 'for': ['java'] }
 Plug 'jaxbot/vim-java-get-set', { 'for': ['java'] }
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -101,7 +102,7 @@ Plug 'kien/ctrlp.vim'
 " Nerdtree file browser
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " Plugin for nerdtree to execute external commands
-Plug 'nerdtree-execute', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'vim-scripts/nerdtree-execute', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 
 " Lightline (simple status line)
 Plug 'itchyny/lightline.vim'
@@ -115,6 +116,7 @@ Plug 'Yggdroot/indentLine'
 
 " Fugitive
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 " Git log viewer
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 " Git changes showed on line numbers
@@ -146,10 +148,10 @@ Plug 'chriskempson/base16-vim'
 
 " Others
 Plug 'guns/jellyx.vim'
-Plug 'xoria256.vim'
-Plug 'Xoria256m'
-Plug 'badwolf'
-Plug 'Nazca'
+Plug 'vim-scripts/xoria256.vim'
+Plug 'vim-scripts/Xoria256m'
+Plug 'vim-scripts/badwolf'
+Plug 'vim-scripts/Nazca'
 Plug 'altercation/vim-colors-solarized'
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -158,8 +160,6 @@ Plug 'altercation/vim-colors-solarized'
 
 " Easymotion to easily navigate inside a file
 Plug 'easymotion/vim-easymotion'
-" Matchit enhances motions
-Plug 'edsono/vim-matchit'
 " More . repeat functionality
 Plug 'tpope/vim-repeat'
 " Delete all but current buffer
@@ -168,7 +168,7 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'mbbill/undotree'
 
 "TODO
-Plug 'YankRing.vim'
+Plug 'vim-scripts/YankRing.vim'
 "fix for yankring and neovim
 let g:yankring_clipboard_monitor=0
 
@@ -177,11 +177,21 @@ Plug 'Shougo/deoplete.nvim'
 " ~/.config/nvim/plugged/YouCompleteMe/
 " ./install.py --clang-completer
 
+" Markdown toc generator :GenTocGFM to generate
+Plug 'mzlogin/vim-markdown-toc'
+
 " Clojure fireplace repl
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-eastwood'
 Plug 'venantius/vim-cljfmt'
 Plug 'guns/vim-clojure-static'
+
+" Wiki
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '/keybase/private/joaotrindade/vimwiki/',
+            \ 'syntax': 'markdown', 'ext': '.md'}]
+
+Plug 'mattn/calendar-vim'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
@@ -552,7 +562,7 @@ let g:ctrlp_map = '<leader>o'
 let g:ctrlp_extensions = ['tag']        " TODO - What does this option do
 let g:ctrlp_by_filename = 0             " Set to 0 to search by path and filename (full path) Change with Control-D
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|doc)$|build$|documentation$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|build$',
   \ 'file': '\v\.(exe|so|dll|jpg|png|gif|zip|o|aux|class)$',
   \ 'link': 'syntastic_lib'}
 let g:ctrlp_working_path_mode = '0'     " Disable because i like to search from current directory
@@ -574,7 +584,8 @@ map çç <Plug>(easymotion-bd-f)
 " Syntax highlighting
 syntax on
 
-colorscheme base16-default-dark
+"colorscheme base16-default-dark
+colorscheme base16-ashes
 set background=dark
 " Other good ones
 " colorscheme molokai
@@ -654,3 +665,7 @@ cnoremap <C-K>    <C-U>
 " To clean
 
 let g:deoplete#enable_at_startup = 1
+
+"if has("termguicolors")
+    set termguicolors
+"endif
