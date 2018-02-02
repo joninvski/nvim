@@ -93,7 +93,7 @@ Plug 'tfnico/vim-gradle'
 " Commander-T
 " ---------------------------------------------------------------------------------------------------------------------
 
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Interface improving
@@ -109,6 +109,9 @@ Plug 'itchyny/lightline.vim'
 
 " Displays thin vertical lines at each indentation level
 Plug 'Yggdroot/indentLine'
+
+" Replaces lambdas/inline functions with a lambda character
+Plug 'calebsmith/vim-lambdify'
 
 " ---------------------------------------------------------------------------------------------------------------------
 " External tools integration plugins
@@ -185,6 +188,8 @@ Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-eastwood'
 Plug 'venantius/vim-cljfmt'
 Plug 'guns/vim-clojure-static'
+Plug 'mklabs/split-term.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Wiki
 Plug 'vimwiki/vimwiki'
@@ -352,9 +357,6 @@ nnoremap Q <nop>
 " 3.3 Vim defaults overriding
 " -----------------------------------------------------
 
-" Intelligent window cycling
-nmap <silent> <C-w><C-w> :call utils#intelligentCycling()<CR>
-
 " When jump to next match also center screen
 noremap n nzz
 noremap N Nzz
@@ -368,9 +370,6 @@ nnoremap H ^
 nnoremap L $
 vnoremap H ^
 vnoremap L g_
-
-" Cancel terminal mode with ,escape
-tnoremap ,<ESC> <C-\><C-n>
 
 " No more accidentally showing up command window (Use C-f to show it)
 map q: :q
@@ -441,15 +440,6 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Generate tags definitions
 command! GenerateCT :call utils#generateCtags()
 command! GenerateRubyCT :call utils#generateRubyCtags()
-" TODO
-
-" -----------------------------------------------------
-" 3.8 TAB autocomplete mappings
-" -----------------------------------------------------
-
-" Multipurpose tab key (inspired by Gary Bernhardt)
-" TODO
-"}}}
 
 " ======================================================================================================================
 " 4.0 Plugins settings
@@ -459,7 +449,7 @@ command! GenerateRubyCT :call utils#generateRubyCtags()
 " -----------------------------------------------------
 " 4.1 Slime
 " -----------------------------------------------------
-let g:slime_target = "tmux"
+let g:slime_target = "neovim"
 
 " -----------------------------------------------------
 " 4.3 NERDTree
@@ -664,8 +654,29 @@ cnoremap <C-K>    <C-U>
 
 " To clean
 
-let g:deoplete#enable_at_startup = 1
-
 "if has("termguicolors")
     set termguicolors
 "endif
+
+tnoremap <C-x><C-x> <C-\><C-n>
+
+tnoremap <C-x>- <C-\><C-n>:Term<CR>
+vnoremap <C-x>- <C-\><C-n>:Term<CR>
+inoremap <C-x>- <C-\><C-n>:Term<CR>
+nnoremap <C-x>- <C-\><C-n>:Term<CR>
+
+tnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+vnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+inoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+nnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+
+tnoremap <C-w>h <c-\><c-n><c-w>h
+tnoremap <C-w>j <c-\><c-n><c-w>j
+tnoremap <C-w>k <c-\><c-n><c-w>k
+tnoremap <C-w>l <c-\><c-n><c-w>l
+let g:splitterm#disable_key_mappings = 0
+
+inoremap <leader>o <esc>:FZF<cr>
+nnoremap <leader>o <esc>:FZF<cr>
+
+let g:deoplete#enable_at_startup = 0
