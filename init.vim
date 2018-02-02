@@ -92,7 +92,7 @@ Plug 'tfnico/vim-gradle'
 " Commander-T
 " ---------------------------------------------------------------------------------------------------------------------
 
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Interface improving
@@ -186,6 +186,7 @@ Plug 'venantius/vim-eastwood'
 Plug 'venantius/vim-cljfmt'
 Plug 'guns/vim-clojure-static'
 Plug 'mklabs/split-term.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
@@ -438,7 +439,7 @@ command! GenerateRubyCT :call utils#generateRubyCtags()
 " -----------------------------------------------------
 " 4.1 Slime
 " -----------------------------------------------------
-let g:slime_target = "tmux"
+let g:slime_target = "neovim"
 
 " -----------------------------------------------------
 " 4.3 NERDTree
@@ -642,23 +643,25 @@ cnoremap <C-K>    <C-U>
 
 " To clean
 
-if has('nvim')
-  tnoremap <C-x><C-x> <C-\><C-n>
+tnoremap <C-x><C-x> <C-\><C-n>
 
-  tnoremap <C-x>- <C-\><C-n>:Term<CR>
-  vnoremap <C-x>- <C-\><C-n>:Term<CR>
-  inoremap <C-x>- <C-\><C-n>:Term<CR>
-  nnoremap <C-x>- <C-\><C-n>:Term<CR>
+tnoremap <C-x>- <C-\><C-n>:Term<CR>
+vnoremap <C-x>- <C-\><C-n>:Term<CR>
+inoremap <C-x>- <C-\><C-n>:Term<CR>
+nnoremap <C-x>- <C-\><C-n>:Term<CR>
 
-  tnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
-  vnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
-  inoremap <C-x>\| <C-\><C-n>:VTerm<CR>
-  nnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+tnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+vnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+inoremap <C-x>\| <C-\><C-n>:VTerm<CR>
+nnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
 
-  tnoremap <C-w>h <c-\><c-n><c-w>h
-  tnoremap <C-w>j <c-\><c-n><c-w>j
-  tnoremap <C-w>k <c-\><c-n><c-w>k
-  tnoremap <C-w>l <c-\><c-n><c-w>l
-  let g:splitterm#disable_key_mappings = 0
-endif
+tnoremap <C-w>h <c-\><c-n><c-w>h
+tnoremap <C-w>j <c-\><c-n><c-w>j
+tnoremap <C-w>k <c-\><c-n><c-w>k
+tnoremap <C-w>l <c-\><c-n><c-w>l
+let g:splitterm#disable_key_mappings = 0
+
+inoremap <leader>o <esc>:FZF<cr>
+nnoremap <leader>o <esc>:FZF<cr>
+
 let g:deoplete#enable_at_startup = 0
