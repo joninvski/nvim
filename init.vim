@@ -88,6 +88,8 @@ Plug 'honza/dockerfile.vim'
 Plug 'sheerun/vim-json'
 " Treat build.gradle files as groovy files
 Plug 'tfnico/vim-gradle'
+" Kotlin
+Plug 'udalov/kotlin-vim'
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Commander-T
@@ -197,6 +199,10 @@ let g:vimwiki_list = [{'path': '/keybase/private/joaotrindade/vimwiki/',
             \ 'syntax': 'markdown', 'ext': '.md'}]
 
 Plug 'mattn/calendar-vim'
+
+" Adds bitbucket and gitlab support fugitive
+Plug 'tommcdo/vim-fubitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
@@ -449,7 +455,7 @@ command! GenerateRubyCT :call utils#generateRubyCtags()
 " -----------------------------------------------------
 " 4.1 Slime
 " -----------------------------------------------------
-let g:slime_target = "neovim"
+let g:slime_target = "tmux"
 
 " -----------------------------------------------------
 " 4.3 NERDTree
