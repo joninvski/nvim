@@ -24,8 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Language agnostic plugins
 " ---------------------------------------------------------------------------------------------------------------------
 
-" Asynchronous maker and linter (needs linters to work)
-Plug 'benekastah/neomake', { 'on': ['Neomake'] }
 " Automatically closing stuff
 Plug 'cohama/lexima.vim'
 " Commenting support (gc)
@@ -47,7 +45,6 @@ Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
 Plug 'tpope/vim-bundler', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
 " String interpolation helper
 Plug 'p0deje/vim-ruby-interpolation', { 'for': ['ruby'] }
-Plug 'fatih/vim-go', { 'for': ['go'] }
 
 " ---------------------------------------------------------------------------------------------------------------------
 " HTML/CSS
@@ -90,12 +87,17 @@ Plug 'sheerun/vim-json'
 Plug 'tfnico/vim-gradle'
 " Kotlin
 Plug 'udalov/kotlin-vim'
+" Go
+Plug 'fatih/vim-go', { 'for': ['go'] }
 
 " ---------------------------------------------------------------------------------------------------------------------
-" Commander-T
+" File finder/jumper
 " ---------------------------------------------------------------------------------------------------------------------
 
-"Plug 'kien/ctrlp.vim'
+" You need to install fzf binary in $PATH
+Plug 'junegunn/fzf'
+inoremap <leader>o <esc>:FZF<cr>
+nnoremap <leader>o <esc>:FZF<cr>
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Interface improving
@@ -105,13 +107,10 @@ Plug 'udalov/kotlin-vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " Plugin for nerdtree to execute external commands
 Plug 'vim-scripts/nerdtree-execute', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-
 " Lightline (simple status line)
 Plug 'itchyny/lightline.vim'
-
 " Displays thin vertical lines at each indentation level
 Plug 'Yggdroot/indentLine'
-
 " Replaces lambdas/inline functions with a lambda character
 Plug 'calebsmith/vim-lambdify'
 
@@ -122,15 +121,23 @@ Plug 'calebsmith/vim-lambdify'
 " Fugitive
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+" Adds bitbucket and gitlab support fugitive
+Plug 'tommcdo/vim-fubitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
+
 " Git log viewer
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+
 " Git changes showed on line numbers
 Plug 'airblade/vim-gitgutter'
-" Neovim terminal improving
-Plug 'kassio/neoterm', { 'on': 'T' }
+
 " Support gist interaction
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+
+" Neovim terminal improving
+Plug 'kassio/neoterm', { 'on': 'T' }
+
 " Run in another terminal 'window' with Control+C Control+C
 " Then default :,1 to select the pane one of current window
 Plug 'jpalardy/vim-slime'
@@ -172,15 +179,17 @@ Plug 'vim-scripts/BufOnly.vim'
 " Nicer undo tree
 Plug 'mbbill/undotree'
 
-"TODO
-Plug 'vim-scripts/YankRing.vim'
-"fix for yankring and neovim
-let g:yankring_clipboard_monitor=0
+" Store and cycle latest yanks
+Plug 'svermeulen/vim-yoink'
+nmap <c-p> <plug>(YoinkPostPasteSwapBack)
+nmap <c-n> <plug>(YoinkPostPasteSwapForward)
 
-Plug 'Shougo/deoplete.nvim'
-" Go to an run:
-" ~/.config/nvim/plugged/YouCompleteMe/
-" ./install.py --clang-completer
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+let g:yoinkSavePersistently="1"
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 0
 
 " Markdown toc generator :GenTocGFM to generate
 Plug 'mzlogin/vim-markdown-toc'
@@ -190,19 +199,21 @@ Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-eastwood'
 Plug 'venantius/vim-cljfmt'
 Plug 'guns/vim-clojure-static'
+
+" Terminal :Term, :VTterm
 Plug 'mklabs/split-term.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+let g:splitterm#disable_key_mappings = 0
 
 " Wiki
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '/keybase/private/joaotrindade/vimwiki/',
             \ 'syntax': 'markdown', 'ext': '.md'}]
 
-Plug 'mattn/calendar-vim'
+" Linter
+Plug 'w0rp/ale'
 
-" Adds bitbucket and gitlab support fugitive
-Plug 'tommcdo/vim-fubitive'
-Plug 'shumphrey/fugitive-gitlab.vim'
+" Sudo suppport w!!
+Plug 'lambdalisue/suda.vim'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
@@ -398,7 +409,7 @@ autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
 " -----------------------------------------------------
 
 " Whenever i forget to use sudo vim... Now just write with 'w!!'
-cmap w!! w !sudo tee >/dev/null %
+cmap w!! w suda://%
 
 " Fast editing of .vimrc
 map <leader>e :e! ~/.config/nvim/init.vim<cr>
@@ -551,19 +562,6 @@ let g:test#strategy = "neoterm"
 let g:vim_markdown_no_default_key_mappings=1
 let g:vim_markdown_folding_disabled=1
 
-" -----------------------------------------------------
-" 4.15 CtrlP settings
-" -----------------------------------------------------
-let g:ctrlp_map = '<leader>o'
-let g:ctrlp_extensions = ['tag']        " TODO - What does this option do
-let g:ctrlp_by_filename = 0             " Set to 0 to search by path and filename (full path) Change with Control-D
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|build$',
-  \ 'file': '\v\.(exe|so|dll|jpg|png|gif|zip|o|aux|class)$',
-  \ 'link': 'syntastic_lib'}
-let g:ctrlp_working_path_mode = '0'     " Disable because i like to search from current directory
-"}}}
-
 " ======================================================================================================================
 " 5.0 Plugin mappings
 " ======================================================================================================================
@@ -632,24 +630,6 @@ autocmd FileType gitcommit,markdown setlocal spell
 autocmd FileType gitcommit,markdown setlocal spelllang=en_us
 autocmd FileType gitcommit,markdown set colorcolumn=72
 
-" -----------------------------------------------------
-" 7.1 Run linters after save
-" -----------------------------------------------------
-
-" npm install -g eslint
-autocmd BufWritePost *.js Neomake eslint
-" gem install rubocop
-autocmd BufWritePost *.rb Neomake rubocop
-" apt-get install tidy
-autocmd BufWritePost *.html Neomake tidy
-" gem install scsslint
-autocmd BufWritePost *.scss Neomake scsslint
-" apt-get install shellcheck
-autocmd BufWritePost *.sh Neomake shellcheck
-" pip3 install vim-vint
-autocmd BufWritePost *.vim Neomake vint
-"}}}
-
 " Command-line config{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Bash like
@@ -657,32 +637,6 @@ cnoremap <C-A>    <Home>
 cnoremap <C-E>    <End>
 cnoremap <C-K>    <C-U>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" To clean
-
-"if has("termguicolors")
+if has("termguicolors")
     set termguicolors
-"endif
-
-tnoremap <C-x><C-x> <C-\><C-n>
-
-tnoremap <C-x>- <C-\><C-n>:Term<CR>
-vnoremap <C-x>- <C-\><C-n>:Term<CR>
-inoremap <C-x>- <C-\><C-n>:Term<CR>
-nnoremap <C-x>- <C-\><C-n>:Term<CR>
-
-tnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
-vnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
-inoremap <C-x>\| <C-\><C-n>:VTerm<CR>
-nnoremap <C-x>\| <C-\><C-n>:VTerm<CR>
-
-tnoremap <C-w>h <c-\><c-n><c-w>h
-tnoremap <C-w>j <c-\><c-n><c-w>j
-tnoremap <C-w>k <c-\><c-n><c-w>k
-tnoremap <C-w>l <c-\><c-n><c-w>l
-let g:splitterm#disable_key_mappings = 0
-
-inoremap <leader>o <esc>:FZF<cr>
-nnoremap <leader>o <esc>:FZF<cr>
-
-let g:deoplete#enable_at_startup = 0
+endif
