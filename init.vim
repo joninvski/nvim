@@ -1,5 +1,6 @@
+scriptencoding utf-8
 " ######################################################################################################################
-" ### Original Author : Martin Toma <martin.toma.svk@gmail.com>                                                               ###
+" ### Original Author : Martin Toma <martin.toma.svk@gmail.com>
 " ### Kudos to him
 " ######################################################################################################################
 
@@ -186,7 +187,7 @@ nmap <c-n> <plug>(YoinkPostPasteSwapForward)
 
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
-let g:yoinkSavePersistently="1"
+let g:yoinkSavePersistently='1'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 0
@@ -402,7 +403,9 @@ let mapleader = "\\"
 let g:mapleader = "\\"
 
 " Autoload init.vim when you save it
-autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
+augroup vimconfig
+  autocmd! BufWritePost init.vim source ~/.config/nvim/init.vim
+augroup end
 
 " -----------------------------------------------------
 " 3.4 Common tasks
@@ -466,7 +469,7 @@ command! GenerateRubyCT :call utils#generateRubyCtags()
 " -----------------------------------------------------
 " 4.1 Slime
 " -----------------------------------------------------
-let g:slime_target = "tmux"
+let g:slime_target = 'tmux'
 
 " -----------------------------------------------------
 " 4.3 NERDTree
@@ -554,7 +557,7 @@ let g:neoterm_position='vertical'
 " -----------------------------------------------------
 " 4.12 Vim-Test settings
 " -----------------------------------------------------
-let g:test#strategy = "neoterm"
+let g:test#strategy = 'neoterm'
 
 " -----------------------------------------------------
 " 4.15 Vim Markdown settings
@@ -613,22 +616,25 @@ hi! link BufTabLineFill Comment
 " 7.0 Filetype specific settings and autocommands
 " ======================================================================================================================
 "{{{
-autocmd FileType ruby,coffee,sass,scss,haml,slim,json,vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
-autocmd FileType html,htmldjango,xhtml,css,javascript,javascript.jsx,snippets setlocal shiftwidth=4 softtabstop=4 tabstop=4
+augroup spacing
+  autocmd FileType ruby,coffee,sass,scss,haml,slim,json,vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
+  autocmd FileType html,htmldjango,xhtml,css,javascript,javascript.jsx,snippets setlocal shiftwidth=4 softtabstop=4 tabstop=4
+augroup end
 
 " Keywordprg settings
-autocmd FileType vim setlocal keywordprg=:help
-
-" Turn spellcheck on for markdown files.
-autocmd BufNewFile,BufRead *.md setlocal spell
+augroup vimhelp
+  autocmd FileType vim setlocal keywordprg=:help
+augroup end
 
 " Resize splits when the window is resized
-autocmd VimResized * :wincmd =
+" autocmd VimResized * :wincmd =
 
 " Git commit messages with spelling and warning to not pass 72 chars
-autocmd FileType gitcommit,markdown setlocal spell
-autocmd FileType gitcommit,markdown setlocal spelllang=en_us
-autocmd FileType gitcommit,markdown set colorcolumn=72
+augroup markdown
+  autocmd FileType gitcommit,markdown setlocal spell
+  autocmd FileType gitcommit,markdown setlocal spelllang=en_us
+  autocmd FileType gitcommit,markdown set colorcolumn=72
+augroup end
 
 " Command-line config{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -637,6 +643,6 @@ cnoremap <C-A>    <Home>
 cnoremap <C-E>    <End>
 cnoremap <C-K>    <C-U>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-if has("termguicolors")
+if has('termguicolors')
     set termguicolors
 endif
