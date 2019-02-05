@@ -78,8 +78,6 @@ Plug 'mitsuhiko/vim-python-combined', { 'for': ['python'] }
 Plug 'lambdatoast/elm.vim', { 'for': ['elm'] }
 " Markdown syntax and helpers
 Plug 'plasticboy/vim-markdown'
-" Git syntax
-Plug 'tpope/vim-git'
 " Dockerfile
 Plug 'honza/dockerfile.vim'
 " JSON syntax
