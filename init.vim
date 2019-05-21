@@ -187,7 +187,8 @@ nmap <c-n> <plug>(YoinkPostPasteSwapForward)
 
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
-let g:yoinkSavePersistently='1'
+let g:yoinkSavePersistently = '1'
+let g:yoinkIncludeDeleteOperations = '1'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 0
