@@ -600,6 +600,9 @@ colorscheme onedark
 " colorscheme nazca
 " colorscheme jellyx
 
+if has('termguicolors')
+  set termguicolors
+endif
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -660,10 +663,3 @@ augroup Binary
   au BufWritePost *.bin if &bin | %!xxd
   au BufWritePost *.bin set nomod | endif
 augroup END
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-
-if has("termguicolors")
-  set termguicolors
-endif
