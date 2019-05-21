@@ -13,7 +13,7 @@ scriptencoding utf-8
 " using 256 colors (or 88 colors) if your terminal supports it,
 " but does not automatically use 256 colors by default.
 " set t_Co=256
-let base16colorspace=256
+" let base16colorspace=256
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -164,6 +164,8 @@ Plug 'vim-scripts/Xoria256m'
 Plug 'vim-scripts/badwolf'
 Plug 'vim-scripts/Nazca'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Other
@@ -579,24 +581,8 @@ map çç <Plug>(easymotion-bd-f)
 " Syntax highlighting
 syntax on
 
-" Fix highlighting for spell checks in terminal
-function! s:base16_customize() abort
-  " Colors: https://github.com/chriskempson/base16/blob/master/styling.md
-  " Arguments: group, guifg, guibg, ctermfg, ctermbg, attr, guisp
-  call Base16hi("SpellBad",   "", "", g:base16_cterm08, g:base16_cterm00, "", "")
-  call Base16hi("SpellCap",   "", "", g:base16_cterm0A, g:base16_cterm00, "", "")
-  call Base16hi("SpellLocal", "", "", g:base16_cterm0D, g:base16_cterm00, "", "")
-  call Base16hi("SpellRare",  "", "", g:base16_cterm0B, g:base16_cterm00, "", "")
-endfunction
-
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme * call s:base16_customize()
-augroup END
-
-"colorscheme base16-default-dark
-colorscheme base16-ashes
 set background=dark
+colorscheme onedark
 " Other good ones
 " colorscheme molokai
 " colorscheme iceberg
@@ -656,3 +642,10 @@ cnoremap <C-A>    <Home>
 cnoremap <C-E>    <End>
 cnoremap <C-K>    <C-U>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+
+if has("termguicolors")
+  set termguicolors
+endif
