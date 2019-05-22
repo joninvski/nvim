@@ -222,6 +222,10 @@ let b:ale_linters = {
 " Sudo suppport w!!
 Plug 'lambdalisue/suda.vim'
 
+" Plantuml
+Plug 'scrooloose/vim-slumlord'
+Plug 'aklt/plantuml-syntax'
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -625,7 +629,7 @@ hi! link BufTabLineFill Comment
 " ======================================================================================================================
 "{{{
 augroup spacing
-  autocmd FileType javascript,yaml,ruby,coffee,sass,scss,haml,slim,json,vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
+  autocmd FileType javascript,yaml,ruby,coffee,sass,scss,haml,slim,json,vim,plantuml setlocal shiftwidth=2 softtabstop=2 tabstop=2
   autocmd FileType html,htmldjango,xhtml,css,snippets setlocal shiftwidth=4 softtabstop=4 tabstop=4
 augroup end
 
