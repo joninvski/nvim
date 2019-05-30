@@ -213,10 +213,9 @@ let g:vimwiki_list = [{'path': '/keybase/private/joaotrindade/vimwiki/',
 
 " Linter
 Plug 'w0rp/ale'
-let b:ale_linters = {
+let g:ale_linters = {
 \  'javascript': ['standard', 'eslint'],
-\  'vimwiki': [''],
-\  'markdown': []
+\  'vimwiki': []
 \}
 
 " Sudo suppport w!!
