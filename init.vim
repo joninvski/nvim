@@ -218,6 +218,12 @@ let g:ale_linters = {
 \  'vimwiki': []
 \}
 
+" JS min files are normally huge. No sense in running linter there
+let g:ale_pattern_options = {
+\  '.*\.min\.js$': {'ale_enabled': 0},
+\}
+
+
 " Sudo suppport w!!
 Plug 'lambdalisue/suda.vim'
 
