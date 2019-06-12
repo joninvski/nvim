@@ -632,8 +632,8 @@ hi! link BufTabLineFill Comment
 " ======================================================================================================================
 "{{{
 augroup spacing
-  autocmd FileType javascript,yaml,ruby,coffee,sass,scss,haml,slim,json,vim,plantuml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-  autocmd FileType html,htmldjango,xhtml,css,snippets setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd FileType javascript,yaml,html,ruby,coffee,sass,scss,haml,slim,json,vim,plantuml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+  autocmd FileType java setlocal shiftwidth=4 softtabstop=4 tabstop=4
 augroup end
 
 " Keywordprg settings
