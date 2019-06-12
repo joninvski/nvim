@@ -119,10 +119,9 @@ Plug 'calebsmith/vim-lambdify'
 
 " Fugitive
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-" Adds bitbucket and gitlab support fugitive
-Plug 'tommcdo/vim-fubitive'
-Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tpope/vim-rhubarb' " better github support
+Plug 'tommcdo/vim-fubitive' " bitbucket support
+Plug 'shumphrey/fugitive-gitlab.vim' " gitlab support
 
 " Git log viewer
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }
@@ -222,7 +221,6 @@ let g:ale_linters = {
 let g:ale_pattern_options = {
 \  '.*\.min\.js$': {'ale_enabled': 0},
 \}
-
 
 " Sudo suppport w!!
 Plug 'lambdalisue/suda.vim'
