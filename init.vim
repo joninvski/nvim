@@ -189,8 +189,9 @@ nmap P <plug>(YoinkPaste_P)
 let g:yoinkSavePersistently = '1'
 let g:yoinkIncludeDeleteOperations = '1'
 
+" Auto Completion while you write (requires python3)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_at_startup = 1
 
 " Markdown toc generator :GenTocGFM to generate
 Plug 'mzlogin/vim-markdown-toc'
