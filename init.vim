@@ -124,7 +124,7 @@ Plug 'tommcdo/vim-fubitive' " bitbucket support
 Plug 'shumphrey/fugitive-gitlab.vim' " gitlab support
 
 " Git log viewer
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+Plug 'rbong/vim-flog'
 
 " Git changes showed on line numbers
 Plug 'airblade/vim-gitgutter'
@@ -230,6 +230,8 @@ Plug 'lambdalisue/suda.vim'
 Plug 'scrooloose/vim-slumlord'
 Plug 'aklt/plantuml-syntax'
 
+" Show markers on left side
+Plug 'kshenoy/vim-signature'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 1.2 End of plugin declaration
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
